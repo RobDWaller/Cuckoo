@@ -1,0 +1,16 @@
+{
+    "name": "rbdwllr/cuckoo",
+    "description": "A WordPress theme",
+    "type": "wordpress-theme",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rob Waller",
+            "email": "rdwaller1984@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/database": "5.2.*"
+    }
+}
