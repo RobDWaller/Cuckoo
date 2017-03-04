@@ -1,3 +1,6 @@
 <?php
 
-echo 'Hello World!!';
+/**
+ * Initiate Theme
+ */
+require(__DIR__ . '/src/Theme.php');
