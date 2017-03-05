@@ -2,6 +2,8 @@
 
 use Cuckoo\Route\Clean;
 use Cuckoo\Route\Map;
+use Illuminate\Support\Collection;
+use Cuckoo\Template\Twig;
 
 class Route
 {
@@ -98,7 +100,9 @@ class Route
 
 	public function load()
 	{
-		$load = new Load();
+		$template = new Twig();
+
+		$load = new Load($template);
 
 		$load->loadController($this->controllerString, new Collection(['Hello']));
 	}

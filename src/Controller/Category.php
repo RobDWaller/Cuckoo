@@ -11,6 +11,6 @@ class Category implements ControllerInterface
 
 	public function load(Collection $parameters)
 	{
-
+		echo "Hello World!!";
 	}
 }
