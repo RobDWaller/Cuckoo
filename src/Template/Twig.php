@@ -13,7 +13,7 @@ class Twig implements TemplateInterface
 		$loader = new Twig_Loader_Filesystem(__DIR__ . '/../View/');
 		
 		$this->templateEngine = new Twig_Environment($loader, array(
-		    'cache' => __DIR__ . '/../View/',
+		    'cache' => __DIR__ . '/../Cache/',
 		));
 
 		return $this;

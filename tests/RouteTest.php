@@ -87,11 +87,4 @@ class RouteTest extends PHPUnit_Framework_TestCase
 		$this->assertInstanceOf('Illuminate\Support\Collection', $map->getParameters());
 	}
 
-	public function testLoad()
-	{
-		$route = new Route('/category/uncategorised?param1=two&param2=three&param3=four');	
-		
-		$route->parts()->map()->load();
-	}
-
 }

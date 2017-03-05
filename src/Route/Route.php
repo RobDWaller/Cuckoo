@@ -3,7 +3,7 @@
 use Cuckoo\Route\Clean;
 use Cuckoo\Route\Map;
 use Illuminate\Support\Collection;
-use Cuckoo\Template\Twig;
+use Cuckoo\Template\Twig as Template;
 
 class Route
 {
@@ -20,6 +20,8 @@ class Route
 	private $controllerString;
 
 	private $hasController;
+
+	private $parameters;
 
 	public function __construct($routeString)
 	{
@@ -80,6 +82,11 @@ class Route
 		return $this->hasController;
 	}
 
+	public function getParameters()
+	{
+		return $this->parameters;
+	}
+
 	public function parts()
 	{
 		$this->routeParts = new RouteParts($this->getCleanUrl(), $this->getQueryParameters());
@@ -95,15 +102,17 @@ class Route
 
 		$this->hasController = $map->hasController($this->controllerString);
 
+		$this->parameters = $map->getParameters();
+
 		return $this;
 	}
 
 	public function load()
 	{
-		$template = new Twig();
+		$template = new Template();
 
 		$load = new Load($template);
 
-		$load->loadController($this->controllerString, new Collection(['Hello']));
+		$load->loadController($this->controllerString, $this->parameters);
 	}
 }

@@ -14,6 +14,6 @@ class Tag implements ControllerInterface
 
 	public function load(Collection $parameters)
 	{
-		$this->template->render('tag.twig', ['message' => 'Hello World How Are You']);
+		$this->template->render('tag.twig', ['message' => 'These are the Tags', 'title' => 'Cuckoo Tags']);
 	}
 }

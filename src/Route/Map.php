@@ -25,6 +25,6 @@ class Map
 
 	public function getParameters()
 	{
-		
+		return $this->parts->getQueryParts();
 	}
 }
