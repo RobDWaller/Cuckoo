@@ -46,13 +46,15 @@ class RouteTest extends PHPUnit_Framework_TestCase
 		
 		$parts = $route->parts();
 
-		$this->assertInstanceOf('Cuckoo\Route\RouteParts', $parts);		
+		$this->assertInstanceOf('Cuckoo\Route\Route', $parts);
 
-		$this->assertInstanceOf('Illuminate\Support\Collection', $parts->getUrlParts());
+		$this->assertInstanceOf('Cuckoo\Route\RouteParts', $parts->getRouteParts());		
 
-		$this->assertEquals(null, $parts->getQueryParts());
+		$this->assertInstanceOf('Illuminate\Support\Collection', $parts->getRouteParts()->getUrlParts());
 
-		$this->assertEquals('category', $parts->getUrlParts()->first());
+		$this->assertEquals(null, $parts->getRouteParts()->getQueryParts());
+
+		$this->assertEquals('category', $parts->getRouteParts()->getUrlParts()->first());
 	}
 
 	public function testRoutePartsWithQueryParameters()
@@ -61,11 +63,35 @@ class RouteTest extends PHPUnit_Framework_TestCase
 		
 		$parts = $route->parts();
 
-		$this->assertInstanceOf('Cuckoo\Route\RouteParts', $parts);		
+		$this->assertInstanceOf('Cuckoo\Route\Route', $parts);
 
-		$this->assertInstanceOf('Illuminate\Support\Collection', $parts->getUrlParts());
+		$this->assertInstanceOf('Cuckoo\Route\RouteParts', $parts->getRouteParts());		
 
-		$this->assertInstanceOf('Illuminate\Support\Collection', $parts->getQueryParts());
+		$this->assertInstanceOf('Illuminate\Support\Collection', $parts->getRouteParts()->getUrlParts());
+
+		$this->assertInstanceOf('Illuminate\Support\Collection', $parts->getRouteParts()->getQueryParts());
+	}
+
+	public function testRouteMap()
+	{
+		$route = new Route('/category/uncategorised?param1=two&param2=three&param3=four');	
+		
+		$map = $route->parts()->map();
+
+		$this->assertInstanceOf('Cuckoo\Route\Route', $map);
+
+		$this->assertEquals('Cuckoo\Controller\Category', $map->getControllerString());
+
+		$this->assertTrue($map->hasController());
+
+		$this->assertInstanceOf('Illuminate\Support\Collection', $map->getParameters());
+	}
+
+	public function testLoad()
+	{
+		$route = new Route('/category/uncategorised?param1=two&param2=three&param3=four');	
+		
+		$route->parts()->map()->load();
 	}
 
 }

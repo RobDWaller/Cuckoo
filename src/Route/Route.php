@@ -1,6 +1,7 @@
 <?php namespace Cuckoo\Route;
 
 use Cuckoo\Route\Clean;
+use Cuckoo\Route\Map;
 
 class Route
 {
@@ -11,6 +12,12 @@ class Route
 	private $cleanUrl;
 
 	private $queryParameters;
+
+	private $routeParts;
+
+	private $controllerString;
+
+	private $hasController;
 
 	public function __construct($routeString)
 	{
@@ -56,9 +63,43 @@ class Route
 		return $this->clean;
 	}
 
-	public function parts()
+	public function getRouteParts()
 	{
-		return new RouteParts($this->getCleanUrl(), $this->getQueryParameters());
+		return $this->routeParts;
 	}
 
+	public function getControllerString()
+	{
+		return $this->controllerString;
+	}
+
+	public function hasController()
+	{
+		return $this->hasController;
+	}
+
+	public function parts()
+	{
+		$this->routeParts = new RouteParts($this->getCleanUrl(), $this->getQueryParameters());
+
+		return $this;
+	}
+
+	public function map()
+	{
+		$map = new Map($this->getRouteParts());
+
+		$this->controllerString = $map->getControllerString();
+
+		$this->hasController = $map->hasController($this->controllerString);
+
+		return $this;
+	}
+
+	public function load()
+	{
+		$load = new Load();
+
+		$load->loadController($this->controllerString, new Collection(['Hello']));
+	}
 }

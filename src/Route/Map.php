@@ -1,6 +1,6 @@
 <?php namespace Cuckoo\Route;
 
-use Illuminate\Support\Collection;
+use Cuckoo\Route\RouteParts;
 
 class Map
 {
@@ -8,13 +8,23 @@ class Map
 
 	private $parts;
 
-	public function __construct(Collection $parts)
+	public function __construct(RouteParts $parts)
 	{
 		$this->parts = $parts;
 	}
 
 	public function getControllerString()
 	{
-		return $this->base . "\\" .  ucfirst($this->parts->first());
+		return $this->base . "\\" .  ucfirst($this->parts->getUrlParts()->first());
+	}
+
+	public function hasController($controllerString)
+	{
+		return class_exists($controllerString);
+	}
+
+	public function getParameters()
+	{
+		
 	}
 }

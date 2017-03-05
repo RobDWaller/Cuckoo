@@ -20,7 +20,8 @@
     "autoload": {
         "psr-4": {
             "Cuckoo\\": "src",
-            "Cuckoo\\Route\\": "src/Route"
+            "Cuckoo\\Route\\": "src/Route",
+            "Cuckoo\\Contoller\\": "src/Contoller"
         }
     }
 }
