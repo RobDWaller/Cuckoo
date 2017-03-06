@@ -3,7 +3,7 @@
 use Illuminate\Support\Collection;
 use Cuckoo\Template\TemplateInterface;
 
-class Tag implements ControllerInterface
+class Home implements ControllerInterface
 {
 	private $template;
 
@@ -14,6 +14,6 @@ class Tag implements ControllerInterface
 
 	public function load(Collection $parameters = null)
 	{
-		$this->template->render('tag.twig', ['message' => 'These are the Tags', 'title' => 'Cuckoo Tags']);
+		$this->template->render('home.twig', ['message' => 'Welcome to the Home Page', 'title' => 'Cuckoo Home']);
 	}
 }

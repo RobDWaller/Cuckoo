@@ -7,5 +7,5 @@ interface ControllerInterface
 {
 	public function __construct(TemplateInterface $template);
 
-	public function load(Collection $parameters);
+	public function load(Collection $parameters = null);
 }

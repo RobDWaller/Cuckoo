@@ -12,7 +12,7 @@ class Category implements ControllerInterface
 		$this->template = $template;
 	}
 
-	public function load(Collection $parameters)
+	public function load(Collection $parameters = null)
 	{
 		$this->template->render('category.twig', ['message' => 'These are the Categories', 'title' => 'Cuckoo Cateory']);
 	}

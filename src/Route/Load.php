@@ -12,7 +12,7 @@ class Load
 		$this->templateEngine = $template->make();
 	}
 
-	public function loadController($classString, Collection $parameters)
+	public function loadController($classString, Collection $parameters = null)
 	{
 		$controller = new $classString($this->templateEngine);
 

@@ -87,4 +87,40 @@ class RouteTest extends PHPUnit_Framework_TestCase
 		$this->assertInstanceOf('Illuminate\Support\Collection', $map->getParameters());
 	}
 
+	public function testRouteEmpty()
+	{
+		$route = new Route('');	
+		
+		$map = $route->parts()->map();
+
+		$this->assertEquals('Cuckoo\Controller\Home', $map->getControllerString());
+	}
+
+	public function testRouteSlashOnly()
+	{
+		$route = new Route('/');	
+		
+		$map = $route->parts()->map();
+
+		$this->assertEquals('Cuckoo\Controller\Home', $map->getControllerString());
+	}
+
+	public function testRoutePage()
+	{
+		$route = new Route('/sample-page/');	
+		
+		$map = $route->parts()->map();
+
+		$this->assertEquals('Cuckoo\Controller\Page', $map->getControllerString());
+	}
+
+	public function testRoutePost()
+	{
+		$route = new Route('/2017/03/04/hello-world');	
+		
+		$map = $route->parts()->map();
+
+		$this->assertEquals('Cuckoo\Controller\Post', $map->getControllerString());
+	}
+
 }

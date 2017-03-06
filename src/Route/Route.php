@@ -102,6 +102,16 @@ class Route
 
 		$this->hasController = $map->hasController($this->controllerString);
 
+		if (!$this->hasController) {
+			if ($map->isPossiblePage()) {
+				$this->controllerString = $map->getPageControllerString();
+			}
+
+			if ($map->isPossiblePost()) {
+				$this->controllerString = $map->getPostControllerString();
+			}	
+		}
+
 		$this->parameters = $map->getParameters();
 
 		return $this;

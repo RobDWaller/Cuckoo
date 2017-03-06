@@ -13,4 +13,34 @@ class RouteMapTest extends PHPUnit_Framework_TestCase
 
 		$this->assertTrue($map->hasController('Cuckoo\Controller\Category'));
 	}
+
+	public function testControllerDoesNotExistPage()
+	{
+		$routeParts = new RouteParts('sample-page', null);
+
+		$map = new Map($routeParts);
+
+		$controllerString = $map->getControllerString();
+
+		$this->assertFalse($map->hasController($controllerString));
+
+		$this->assertTrue($map->isPossiblePage());
+
+		$this->assertEquals('Cuckoo\Controller\Page', $map->getPageControllerString());
+	}
+
+	public function testControllerDoesNotExistPost()
+	{
+		$routeParts = new RouteParts('2017/03/04/hello-world', null);
+
+		$map = new Map($routeParts);
+
+		$controllerString = $map->getControllerString();
+
+		$this->assertFalse($map->hasController($controllerString));
+
+		$this->assertTrue($map->isPossiblePost());
+
+		$this->assertEquals('Cuckoo\Controller\Post', $map->getPostControllerString());
+	}
 }
