@@ -3,10 +3,12 @@ Theme Name: Cuckoo
 Theme URI: 
 Author: Rob Waller <rdwaller1984@gmail.com>
 Author URI: 
-Description: A WordPress Theme
+Description: A simple WordPress MVC Theme Framework for building better SOLID 
+themes. Uses Twig and Eloquent to help seperate out business logic from your 
+views.
 Version: 0.1
 License: MIT
 Text Domain: Cuckoo
-Tags: composer
+Tags: composer MVC SOLID twig eloquent
 
 */

@@ -2,6 +2,7 @@
     "name": "rbdwllr/cuckoo",
     "description": "A WordPress theme",
     "type": "wordpress-theme",
+    "keywords": ["wordpress", "theme", "mvc", "solid", "twig", "eloquent"],
     "license": "MIT",
     "authors": [
         {
