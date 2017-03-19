@@ -18,7 +18,11 @@ class RouteParts
 
     public function getUrlParts()
     {
-        return new Collection(explode('/', $this->urlString));
+        if (!empty($this->urlString) && $this->urlString !== '/') {
+            return new Collection(explode('/', $this->urlString));
+        }
+
+        return new Collection([]);
     }
 
     public function getQueryParts()
@@ -32,5 +36,7 @@ class RouteParts
 
             return new Collection($partObjects);
         }
+
+        return new Collection([]);
     }
 }

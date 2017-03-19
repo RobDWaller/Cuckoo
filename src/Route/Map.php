@@ -1,6 +1,8 @@
 <?php namespace Cuckoo\Route;
 
 use Cuckoo\Route\RouteParts;
+use Illuminate\Support\Collection;
+use Cuckoo\Exception\RouteException;
 
 class Map
 {
@@ -12,34 +14,62 @@ class Map
 
     private $parts;
 
+    private $parameters;
+
+    private $controller;
+
     public function __construct(RouteParts $parts)
     {
         $this->parts = $parts;
     }
 
-    public function getControllerString()
+    public function build()
     {
-        return $this->base . "\\" .  $this->getControllerClassName($this->parts->getUrlParts()->first());
-    }
+        if ($this->parts->getUrlParts()->count() === 0) {
+            $this->parameters = $this->parts->getQueryParts();
 
-    private function getControllerClassName($urlPartString)
-    {
-        return empty($urlPartString) ? 'Home' : ucfirst($urlPartString);
+            $this->controller = 'Home';
+
+            return true;
+
+        } elseif ($this->parts->getUrlParts()->count() === 1) {
+            $this->parameters = $this->parts->getQueryParts();
+
+            $this->controller = 'Page';
+
+            return true;
+
+        } elseif ($this->parts->getUrlParts()->count() === 2) {
+            $this->parameters = new Collection(
+                array_merge(
+                    [$this->parts->getUrlParts()->toArray()[1]], 
+                    $this->parts->getQueryParts()->count() ? $this->parts->getQueryParts()->toArray() : []
+                )
+            );
+
+            $this->controller =  ucfirst($this->parts->getUrlParts()->first());
+
+            return true;
+
+        } elseif ($this->parts->getUrlParts()->count() > 2) {
+            $this->parameters = new Collection(
+                array_merge(
+                    $this->parts->getUrlParts()->toArray(), 
+                    $this->parts->getQueryParts()->count() ? $this->parts->getQueryParts()->toArray() : []
+                )
+            );
+
+            $this->controller = 'Post';
+
+            return true;
+        }
+
+        throw new RouteException('Could not route map URL to controller.');
     }
 
     public function hasController($controllerString)
     {
         return class_exists($controllerString);
-    }
-
-    public function isPossiblePage()
-    {
-        return $this->parts->getUrlParts()->count() === 1;
-    }
-
-    public function isPossiblePost()
-    {
-        return $this->parts->getUrlParts()->count() === 4;
     }
 
     public function getPageControllerString()
@@ -52,8 +82,18 @@ class Map
         return $this->base . '\\' . $this->post;
     }
 
+    public function getController()
+    {
+        return $this->controller;
+    }
+
+    public function getControllerString()
+    {
+        return $this->base . "\\" .  $this->controller;
+    }
+
     public function getParameters()
     {
-        return $this->parts->getQueryParts();
+        return $this->parameters;
     }
 }

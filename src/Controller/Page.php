@@ -13,6 +13,6 @@ class Page extends AbstractController
 
     public function load(Collection $parameters = null)
     {
-        $this->template->render('page.twig', ['message' => 'This is a Page', 'title' => 'Cuckoo Page']);
+        $this->template->render('page.twig', ['message' => $this->httpGet()->message, 'title' => 'Cuckoo Page']);
     }
 }

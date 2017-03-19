@@ -52,7 +52,7 @@ class RouteTest extends PHPUnit_Framework_TestCase
 
 		$this->assertInstanceOf('Illuminate\Support\Collection', $parts->getRouteParts()->getUrlParts());
 
-		$this->assertEquals(null, $parts->getRouteParts()->getQueryParts());
+		$this->assertEquals(0, $parts->getRouteParts()->getQueryParts()->count());
 
 		$this->assertEquals('category', $parts->getRouteParts()->getUrlParts()->first());
 	}
@@ -82,7 +82,7 @@ class RouteTest extends PHPUnit_Framework_TestCase
 
 		$this->assertEquals('Cuckoo\Controller\Category', $map->getControllerString());
 
-		$this->assertTrue($map->hasController());
+        $this->assertTrue($map->hasController());
 
 		$this->assertInstanceOf('Illuminate\Support\Collection', $map->getParameters());
 	}

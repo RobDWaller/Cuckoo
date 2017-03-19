@@ -24,7 +24,8 @@
         "psr-4": {
             "Cuckoo\\": "src",
             "Cuckoo\\Route\\": "src/Route",
-            "Cuckoo\\Contoller\\": "src/Contoller"
+            "Cuckoo\\Contoller\\": "src/Contoller",
+            "Cuckoo\\Exception\\": "src/Exception"
         }
     }
 }
