@@ -2,26 +2,26 @@
 
 class QueryParts
 {
-	private $key;
+    private $key;
 
-	private $value;
+    private $value;
 
-	public function __construct($queryPartString)
-	{
-		$split = explode('=', $queryPartString);
+    public function __construct($queryPartString)
+    {
+        $split = explode('=', $queryPartString);
 
-		$this->key = $split[0];
+        $this->key = $split[0];
 
-		$this->value = $split[1];
-	}
+        $this->value = $split[1];
+    }
 
-	public function getKey()
-	{
-		return $this->key;
-	}
+    public function getKey()
+    {
+        return $this->key;
+    }
 
-	public function getValue()
-	{
-		return $this->value;
-	}
+    public function getValue()
+    {
+        return $this->value;
+    }
 }

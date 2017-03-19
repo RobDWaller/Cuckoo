@@ -3,3 +3,5 @@ preset: psr2
 finder:
   exclude:
     - "tests"
+    - "src/View"
+    - "src/Cache"

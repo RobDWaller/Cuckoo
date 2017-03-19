@@ -5,32 +5,32 @@ use Cuckoo\Route\QueryParts;
 
 class RouteParts
 {
-	private $urlString;
+    private $urlString;
 
-	private $queryString;
+    private $queryString;
 
-	public function __construct($urlString, $queryString = null)
-	{
-		$this->urlString = $urlString;
+    public function __construct($urlString, $queryString = null)
+    {
+        $this->urlString = $urlString;
 
-		$this->queryString = $queryString;
-	}
+        $this->queryString = $queryString;
+    }
 
-	public function getUrlParts()
-	{
-		return new Collection(explode('/', $this->urlString));
-	}
+    public function getUrlParts()
+    {
+        return new Collection(explode('/', $this->urlString));
+    }
 
-	public function getQueryParts()
-	{
-		if ($this->queryString !== null) {
-			$parts = explode('&', $this->queryString);
+    public function getQueryParts()
+    {
+        if ($this->queryString !== null) {
+            $parts = explode('&', $this->queryString);
 
-			foreach ($parts as $part) {
-				$partObjects[] = new QueryParts($part);
-			}
+            foreach ($parts as $part) {
+                $partObjects[] = new QueryParts($part);
+            }
 
-			return new Collection($partObjects);
-		}
-	}
+            return new Collection($partObjects);
+        }
+    }
 }

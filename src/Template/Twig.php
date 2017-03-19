@@ -6,21 +6,21 @@ use Twig_Environment;
 
 class Twig implements TemplateInterface
 {
-	private $templateEngine;
+    private $templateEngine;
 
-	public function make()
-	{
-		$loader = new Twig_Loader_Filesystem(__DIR__ . '/../View/');
-		
-		$this->templateEngine = new Twig_Environment($loader, array(
-		    'cache' => __DIR__ . '/../Cache/',
-		));
+    public function make()
+    {
+        $loader = new Twig_Loader_Filesystem(__DIR__ . '/../View/');
 
-		return $this;
-	}
+        $this->templateEngine = new Twig_Environment($loader, array(
+            'cache' => __DIR__ . '/../Cache/',
+        ));
 
-	public function render($template, array $data)
-	{
-		echo $this->templateEngine->render($template, $data);
-	}
+        return $this;
+    }
+
+    public function render($template, array $data)
+    {
+        echo $this->templateEngine->render($template, $data);
+    }
 }

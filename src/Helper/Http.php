@@ -2,13 +2,13 @@
 
 trait Http
 {
-	public function httpGet()
-	{
-		return (object) $_GET;
-	}
+    public function httpGet()
+    {
+        return (object) $_GET;
+    }
 
-	public function httpPost()
-	{
-		return (object) $_POST;
-	}
+    public function httpPost()
+    {
+        return (object) $_POST;
+    }
 }

@@ -6,14 +6,14 @@ use Cuckoo\Helper\Http;
 
 abstract class AbstractController
 {
-	use Http;
+    use Http;
 
-	protected $template;
+    protected $template;
 
-	public function __construct(TemplateInterface $template)
-	{
-		$this->template = $template;
-	}
+    public function __construct(TemplateInterface $template)
+    {
+        $this->template = $template;
+    }
 
-	abstract public function load(Collection $parameters = null);
+    abstract public function load(Collection $parameters = null);
 }

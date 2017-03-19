@@ -6,7 +6,7 @@ class RouteCleanTest extends PHPUnit_Framework_TestCase
 {
 	public function testCleanStart()
 	{
-		$clean = new Clean();
+        $clean = new Clean();
 
 		$this->assertEquals('category/uncategorised/', $clean->start('/category/uncategorised/'));
 	}

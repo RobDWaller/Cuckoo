@@ -7,122 +7,122 @@ use Cuckoo\Template\Twig as Template;
 
 class Route
 {
-	private $originalUrl;
+    private $originalUrl;
 
-	private $splitUrl;
+    private $splitUrl;
 
-	private $cleanUrl;
+    private $cleanUrl;
 
-	private $queryParameters;
+    private $queryParameters;
 
-	private $routeParts;
+    private $routeParts;
 
-	private $controllerString;
+    private $controllerString;
 
-	private $hasController;
+    private $hasController;
 
-	private $parameters;
+    private $parameters;
 
-	public function __construct($routeString)
-	{
-		$this->originalUrl = $routeString;
+    public function __construct($routeString)
+    {
+        $this->originalUrl = $routeString;
 
-		$this->splitQueryParameters();
+        $this->splitQueryParameters();
 
-		$this->clean();
-	}
+        $this->clean();
+    }
 
-	private function splitQueryParameters()
-	{
-		$parts = explode('?', $this->getOriginalUrl());
+    private function splitQueryParameters()
+    {
+        $parts = explode('?', $this->getOriginalUrl());
 
-		$this->splitUrl = $parts[0];
+        $this->splitUrl = $parts[0];
 
-		if (isset($parts[1])) {
-			$this->queryParameters = $parts[1];
-		}
-	}
+        if (isset($parts[1])) {
+    	   $this->queryParameters = $parts[1];
+        }
+    }
 
-	private function clean()
-	{
-		$clean = new Clean();
+    private function clean()
+    {
+        $clean = new Clean();
 
-		$this->clean = $clean->start($this->splitUrl);
+        $this->clean = $clean->start($this->splitUrl);
 
-		$this->clean = $clean->end($this->clean);
-	}
+        $this->clean = $clean->end($this->clean);
+    }
 
-	public function getOriginalUrl()
-	{
-		return $this->originalUrl;
-	}
+    public function getOriginalUrl()
+    {
+        return $this->originalUrl;
+    }
 
-	public function getQueryParameters()
-	{
-		return $this->queryParameters;
-	}
+    public function getQueryParameters()
+    {
+        return $this->queryParameters;
+    }
 
-	public function getCleanUrl()
-	{
-		return $this->clean;
-	}
+    public function getCleanUrl()
+    {
+        return $this->clean;
+    }
 
-	public function getRouteParts()
-	{
-		return $this->routeParts;
-	}
+    public function getRouteParts()
+    {
+        return $this->routeParts;
+    }
 
-	public function getControllerString()
-	{
-		return $this->controllerString;
-	}
+    public function getControllerString()
+    {
+        return $this->controllerString;
+    }
 
-	public function hasController()
-	{
-		return $this->hasController;
-	}
+    public function hasController()
+    {
+        return $this->hasController;
+    }
 
-	public function getParameters()
-	{
-		return $this->parameters;
-	}
+    public function getParameters()
+    {
+        return $this->parameters;
+    }
 
-	public function parts()
-	{
-		$this->routeParts = new RouteParts($this->getCleanUrl(), $this->getQueryParameters());
+    public function parts()
+    {
+        $this->routeParts = new RouteParts($this->getCleanUrl(), $this->getQueryParameters());
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function map()
-	{
-		$map = new Map($this->getRouteParts());
+    public function map()
+    {
+        $map = new Map($this->getRouteParts());
 
-		$this->controllerString = $map->getControllerString();
+        $this->controllerString = $map->getControllerString();
 
-		$this->hasController = $map->hasController($this->controllerString);
+        $this->hasController = $map->hasController($this->controllerString);
 
-		if (!$this->hasController) {
-			if ($map->isPossiblePage()) {
-				$this->controllerString = $map->getPageControllerString();
-			}
+        if (!$this->hasController) {
+            if ($map->isPossiblePage()) {
+                $this->controllerString = $map->getPageControllerString();
+            }
 
-			if ($map->isPossiblePost()) {
-				$this->controllerString = $map->getPostControllerString();
-			}	
-		}
+            if ($map->isPossiblePost()) {
+                $this->controllerString = $map->getPostControllerString();
+            }	
+        }
 
-		$this->parameters = $map->getParameters();
+        $this->parameters = $map->getParameters();
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function load()
-	{
-		$template = new Template();
+    public function load()
+    {
+        $template = new Template();
 
-		$load = new Load($template);
+        $load = new Load($template);
 
-		$load->loadController($this->controllerString, $this->parameters);
-	}
+        $load->loadController($this->controllerString, $this->parameters);
+    }
 }

@@ -5,17 +5,17 @@ use Cuckoo\Template\TemplateInterface;
 
 class Load
 {
-	private $templateEngine;
+    private $templateEngine;
 
-	public function __construct(TemplateInterface $template)
-	{
-		$this->templateEngine = $template->make();
-	}
+    public function __construct(TemplateInterface $template)
+    {
+        $this->templateEngine = $template->make();
+    }
 
-	public function loadController($classString, Collection $parameters = null)
-	{
-		$controller = new $classString($this->templateEngine);
+    public function loadController($classString, Collection $parameters = null)
+    {
+        $controller = new $classString($this->templateEngine);
 
-		$controller->load($parameters);
-	}
+        $controller->load($parameters);
+    }
 }

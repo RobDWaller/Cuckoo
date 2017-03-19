@@ -2,21 +2,21 @@
 
 class Clean
 {
-	public function start($routeString)
-	{
-		if (preg_match("|^/|", $routeString)) {
-			return substr($routeString, 1, strlen($routeString));
-		}
+    public function start($routeString)
+    {
+        if (preg_match("|^/|", $routeString)) {
+            return substr($routeString, 1, strlen($routeString));
+        }
 
-		return $routeString;
-	}
+        return $routeString;
+    }
 
-	public function end($routeString)
-	{
-		if (preg_match('|/$|', $routeString)) {
-			return substr($routeString, 0, -1);
-		}
+    public function end($routeString)
+    {
+        if (preg_match('|/$|', $routeString)) {
+            return substr($routeString, 0, -1);
+        }
 
-		return $routeString;
-	}
+        return $routeString;
+    }
 }
