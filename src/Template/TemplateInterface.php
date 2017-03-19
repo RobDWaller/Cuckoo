@@ -2,7 +2,7 @@
 
 interface TemplateInterface
 {
-	public function make();
+    public function make();
 
-	public function render($template, array $data);
+    public function render($template, array $data);
 }

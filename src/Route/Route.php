@@ -39,7 +39,7 @@ class Route
         $this->splitUrl = $parts[0];
 
         if (isset($parts[1])) {
-    	   $this->queryParameters = $parts[1];
+            $this->queryParameters = $parts[1];
         }
     }
 
@@ -109,7 +109,7 @@ class Route
 
             if ($map->isPossiblePost()) {
                 $this->controllerString = $map->getPostControllerString();
-            }	
+            }
         }
 
         $this->parameters = $map->getParameters();
