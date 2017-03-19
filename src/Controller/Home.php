@@ -17,8 +17,8 @@ class Home extends AbstractController
         $posts = new Posts();
 
         $this->template->render('home.twig', [
-            'message' => 'Welcome to the Home Page', 
-            'title' => 'Cuckoo Home', 
+            'message' => 'Welcome to the Home Page',
+            'title' => 'Cuckoo Home',
             'posts' => $posts->all()
         ]);
     }
