@@ -42,7 +42,7 @@ class Map
         } elseif ($this->parts->getUrlParts()->count() === 2) {
             $this->parameters = new Collection(
                 array_merge(
-                    [$this->parts->getUrlParts()->toArray()[1]], 
+                    [$this->parts->getUrlParts()->toArray()[1]],
                     $this->parts->getQueryParts()->count() ? $this->parts->getQueryParts()->toArray() : []
                 )
             );
@@ -54,7 +54,7 @@ class Map
         } elseif ($this->parts->getUrlParts()->count() > 2) {
             $this->parameters = new Collection(
                 array_merge(
-                    $this->parts->getUrlParts()->toArray(), 
+                    $this->parts->getUrlParts()->toArray(),
                     $this->parts->getQueryParts()->count() ? $this->parts->getQueryParts()->toArray() : []
                 )
             );
