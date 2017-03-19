@@ -32,7 +32,7 @@ class RouteLoadTest extends PHPUnit_Framework_TestCase
 
 		$load = new Load($template);
 
-		$load->loadController('Cuckoo\Controller\Category', null);
+		$load->loadController('Cuckoo\Controller\Post', null);
 	}
 
 	public function tearDown()

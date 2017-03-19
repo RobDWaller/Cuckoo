@@ -1,15 +1,14 @@
 <?php namespace Cuckoo\Controller;
 
 use Illuminate\Support\Collection;
+use Cuckoo\Controller\AbstractController;
 use Cuckoo\Template\TemplateInterface;
 
-class Category implements ControllerInterface
+class Category extends AbstractController
 {
-	private $template;
-
 	public function __construct(TemplateInterface $template)
 	{
-		$this->template = $template;
+		parent::__construct($template);
 	}
 
 	public function load(Collection $parameters = null)
