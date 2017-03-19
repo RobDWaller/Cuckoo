@@ -31,14 +31,12 @@ class Map
             $this->controller = 'Home';
 
             return true;
-
         } elseif ($this->parts->getUrlParts()->count() === 1) {
             $this->parameters = $this->parts->getQueryParts();
 
             $this->controller = 'Page';
 
             return true;
-
         } elseif ($this->parts->getUrlParts()->count() === 2) {
             $this->parameters = new Collection(
                 array_merge(
@@ -50,7 +48,6 @@ class Map
             $this->controller =  ucfirst($this->parts->getUrlParts()->first());
 
             return true;
-
         } elseif ($this->parts->getUrlParts()->count() > 2) {
             $this->parameters = new Collection(
                 array_merge(

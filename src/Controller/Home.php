@@ -3,6 +3,7 @@
 use Illuminate\Support\Collection;
 use Cuckoo\Controller\AbstractController;
 use Cuckoo\Template\TemplateInterface;
+use Cuckoo\Model\Posts;
 
 class Home extends AbstractController
 {
@@ -13,6 +14,12 @@ class Home extends AbstractController
 
     public function load(Collection $parameters = null)
     {
-        $this->template->render('home.twig', ['message' => 'Welcome to the Home Page', 'title' => 'Cuckoo Home']);
+        $posts = new Posts();
+
+        $this->template->render('home.twig', [
+            'message' => 'Welcome to the Home Page', 
+            'title' => 'Cuckoo Home', 
+            'posts' => $posts->all()
+        ]);
     }
 }
